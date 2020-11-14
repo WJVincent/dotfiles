@@ -25,6 +25,7 @@ source /home/wvincent/.config/nvim/plugins/plugin-settings/fzf-settings.vim
 source /home/wvincent/.config/nvim/plugins/plugin-settings/emoji-settings.vim
 source /home/wvincent/.config/nvim/plugins/plugin-settings/emmet-settings.vim
 source /home/wvincent/.config/nvim/plugins/plugin-settings/comfy-scroll-settings.vim
+source /home/wvincent/.config/nvim/plugins/plugin-settings/lightline.vim
 
 
 "------------------------------------------------------------------------------

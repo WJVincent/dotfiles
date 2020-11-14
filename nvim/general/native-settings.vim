@@ -26,7 +26,7 @@ set cursorline                          " Enable highlighting of the current lin
 set background=dark                     " tell vim what the background color looks like
 set showtabline=2                       " Always show tabs
 set ignorecase
-set smartcase                           " We don't need to see things like -- INSERT -- anymore
+set smartcase
 set nobackup                            " This is recommended by coc
 set nowritebackup
 set nocompatible                        " This is recommended by coc
@@ -36,6 +36,7 @@ set timeoutlen=100                      " By default timeoutlen is 1000 ms
 set clipboard=unnamedplus               " Copy paste between vim and everything else
 set incsearch
 set guifont=JetBrainsMono\ Nerd\ Font
+filetype plugin on
 filetype plugin indent on
 set notimeout nottimeout                " No timeout on leaderkey
 set scrolloff=10

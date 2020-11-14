@@ -17,7 +17,7 @@ nnoremap <C-l> <C-w>l
 nnoremap <Leader>- <C-w>s
 " Vertical split then move to right window.
 nnoremap <Leader>\| <C-w>v<C-w>l
-" Cycle tabs with Tab and Shift+Tab
+" Cycle buffer with Tab and Shift+Tab
 nnoremap<silent> <Tab> :bnext<CR>
 nnoremap<silent> <S-Tab> :bprevious<CR>
 " Kill buffer with Space+bk
@@ -57,3 +57,7 @@ nnoremap <silent> <C-Right> :vertical resize +2<CR>
 " Better omnicomplete mapping
 inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
+
+" Comfy Scroll
+noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
+noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>

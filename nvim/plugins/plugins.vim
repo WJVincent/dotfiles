@@ -30,6 +30,15 @@ Plug 'yuttie/comfortable-motion.vim'
 " Vim Eunuch -- Vim sugar for UNIX shell commands
 Plug 'tpope/vim-eunuch'
 
+" Better Comments
+Plug 'preservim/nerdcommenter'
+
+" Personal notes wiki
+Plug 'vimwiki/vimwiki'
+
+" Better MD support
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+
 "------------------------------------------------------------------------------
 "---------------------------------Syntax Helpers-------------------------------
 "------------------------------------------------------------------------------
@@ -43,6 +52,9 @@ Plug 'tpope/vim-surround'
 " Emmet snippeets for vim
 Plug 'mattn/emmet-vim'
 
+" Extend completion and removal of paired elements
+Plug 'jiangmiao/auto-pairs'
+
 "------------------------------------------------------------------------------
 "-------------------------------------Visuals----------------------------------
 "------------------------------------------------------------------------------
@@ -55,6 +67,12 @@ Plug 'junegunn/vim-emoji'
 
 " nord theme
 Plug 'arcticicestudio/nord-vim'
+
+" Minimal Status Bar
+Plug 'itchyny/lightline.vim'
+
+" Css Color Display
+Plug 'skammer/vim-css-color'
 
 "------------------------------------------------------------------------------
 "----------------------------------File Managers-------------------------------
