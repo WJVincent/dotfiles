@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-
 ################################################################################
-### Imports
+################################################################################
+### Imports --------------------------------------------------------------------
+################################################################################
 ################################################################################
 
 
@@ -17,7 +18,9 @@ from typing import List
 
 
 ################################################################################
-### Variables
+################################################################################
+### Variables ------------------------------------------------------------------
+################################################################################
 ################################################################################
 
 
@@ -25,6 +28,7 @@ mod = "mod4"
 myTerm = "alacritty"
 myConfig = "/home/dt/.config/qtile/config.py"
 browser = "google-chrome-stable"
+ibrowser = "google-chrome-stable -incognito"
 launcher = "dmenu_run -p 'Do The Things: '"
 emacs = "emacsclient -c -a emacs"
 
@@ -43,82 +47,147 @@ prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
 
 ################################################################################
-### KeyBindings
+################################################################################
+### KeyBindings ----------------------------------------------------------------
+################################################################################
 ################################################################################
 
 
 keys = [
-    ### Quick Launch
-    Key([mod], "Return", lazy.spawn(myTerm), desc="Launches My Terminal"),
-    Key([mod, "shift"], "Return", lazy.spawn(launcher), desc="Dmenu Run Launcher"),
-    Key([mod], "b", lazy.spawn(browser), desc="Launch Chrome Browser"),
-    Key([mod], "e", lazy.spawn(emacs), desc="Doom Emacs"),
-    ## Qtile Baisc Controls
-    Key([mod], "Tab", lazy.next_layout(), desc="Toggle through layouts"),
-    Key([mod], "q", lazy.window.kill(), desc="Kill active window"),
-    Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
-    Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    ### Switch focus of monitors
-    Key([mod], "period", lazy.next_screen(), desc="Move focus to next monitor"),
-    ### Treetab controls
+##### --------------------------------------------------------------------------
+### Quick Launch Keys ##########################################################
+##### --------------------------------------------------------------------------
     Key(
-        [mod, "control"],
-        "k",
+        [mod], "Return",
+        lazy.spawn(myTerm),
+        desc="Launches My Terminal"
+        ),
+    Key(
+        [mod, "shift"], "Return",
+        lazy.spawn(launcher),
+        desc="Dmenu-Run Launcher"
+        ),
+    Key(
+        [mod],"b",
+        lazy.spawn(browser),
+        desc="Launch Chrome Browser"
+        ),
+    Key(
+        [mod, "shift"], "b",
+        lazy.spawn(ibrowser),
+        desc="Launch Chrome in Incognito",
+       ),
+    Key(
+        [mod],"e",
+        lazy.spawn(emacs),
+        desc="Launch Doom Emacs"
+        ),
+    Key(
+        [mod], "s",
+        lazy.spawn("slack"),
+        desc="Launch Slack"
+        ),
+    Key(
+        [mod], "z",
+        lazy.spawn("zoom-client"),
+        desc="Launch Zoom"
+       ),
+##### --------------------------------------------------------------------------
+### Qtile Enviornment Keys #####################################################
+##### --------------------------------------------------------------------------
+    Key(
+        [mod], "Tab",
+        lazy.next_layout(),
+        desc="Toggle through layouts"
+        ),
+    Key(
+        [mod], "q",
+        lazy.window.kill(),
+        desc="Kill active window"
+        ),
+    Key(
+        [mod, "shift"], "r",
+        lazy.restart(),
+        desc="Restart Qtile"
+        ),
+    Key(
+        [mod, "shift"], "q",
+        lazy.shutdown(),
+        desc="Shutdown Qtile"
+        ),
+    Key(
+        [mod], "period",
+        lazy.next_screen(),
+        desc="Move focus to next monitor"
+        ),
+##### --------------------------------------------------------------------------
+### Treetab Layout Keys ########################################################
+##### --------------------------------------------------------------------------
+    Key(
+        [mod, "control"], "k",
         lazy.layout.section_up(),
         desc="Move up a section in treetab",
     ),
     Key(
-        [mod, "control"],
-        "j",
+        [mod, "control"], "j",
         lazy.layout.section_down(),
         desc="Move down a section in treetab",
     ),
-    ### Stack controls
-    Key([mod], "k", lazy.layout.down(), desc="Move focus down in current stack pane"),
-    Key([mod], "j", lazy.layout.up(), desc="Move focus up in current stack pane"),
+##### --------------------------------------------------------------------------
+### Stack Layout Keys ##########################################################
+##### --------------------------------------------------------------------------
     Key(
-        [mod, "shift"],
-        "k",
+        [mod], "k",
+        lazy.layout.down(),
+        desc="Move focus down in current stack pane"
+    ),
+    Key(
+        [mod], "j",
+        lazy.layout.up(),
+        desc="Move focus up in current stack pane"
+    ),
+    Key(
+        [mod, "shift"], "k",
         lazy.layout.shuffle_down(),
         desc="Move windows down in current stack",
     ),
     Key(
-        [mod, "shift"],
-        "j",
+        [mod, "shift"], "j",
         lazy.layout.shuffle_up(),
         desc="Move windows up in current stack",
     ),
     Key(
-        [mod],
-        "space",
+        [mod], "space",
         lazy.layout.next(),
         desc="Switch window focus to other pane(s) of stack",
     ),
     Key(
-        [mod, "control"],
-        "Return",
+        [mod, "control"], "Return",
         lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack",
     ),
-    ### Monad Tall controls
+##### --------------------------------------------------------------------------
+### Monad-Tall Layout Keys #####################################################
+##### --------------------------------------------------------------------------
     Key(
-        [mod],
-        "h",
+        [mod], "h",
         lazy.layout.grow(),
         lazy.layout.increase_nmaster(),
         desc="Expand window (MonadTall), increase number in master pane (Tile)",
     ),
     Key(
-        [mod],
-        "l",
+        [mod], "l",
         lazy.layout.shrink(),
         lazy.layout.decrease_nmaster(),
         desc="Shrink window (MonadTall), decrease number in master pane (Tile)",
     ),
-    Key([mod], "n", lazy.layout.normalize(), desc="normalize window size ratios"),
     Key(
-        [mod],
-        "m",
+        [mod], "n",
+        lazy.layout.normalize(),
+        desc="normalize window size ratios"
+    ),
+    Key(
+        [mod], "m",
         lazy.layout.rotate(),
         lazy.layout.flip(),
         desc="Switch which side main pane occupies (XmonadTall)",
@@ -127,7 +196,9 @@ keys = [
 
 
 ################################################################################
-### Groups
+################################################################################
+### Groups ---------------------------------------------------------------------
+################################################################################
 ################################################################################
 
 
@@ -148,14 +219,16 @@ groups = [Group(name, **kwargs) for name, kwargs in group_names]
 for i, (name, kwargs) in enumerate(group_names, 1):
     keys.append(
         Key([mod], str(i), lazy.group[name].toscreen())
-    )  # Switch to another group
+    )
     keys.append(
         Key([mod, "shift"], str(i), lazy.window.togroup(name))
-    )  # Send current window to another group
+    )
 
 
 ################################################################################
-### Layouts
+################################################################################
+### Layouts --------------------------------------------------------------------
+################################################################################
 ################################################################################
 
 
@@ -198,18 +271,35 @@ layouts = [
 
 
 ################################################################################
-### Widgets
+################################################################################
+### Widgets --------------------------------------------------------------------
+################################################################################
 ################################################################################
 
-##### DEFAULT WIDGET SETTINGS #####
-widget_defaults = dict(font="Ubuntu Mono", fontsize=12, padding=2, background=colors[2])
-extension_defaults = widget_defaults.copy()
 
+##### --------------------------------------------------------------------------
+### DEFAULT WIDGET SETTINGS ####################################################
+##### --------------------------------------------------------------------------
+
+widget_defaults = dict(
+    font="Ubuntu Mono",
+    fontsize=12,
+    padding=2,
+    background=colors[2]
+)
+extension_defaults = widget_defaults.copy()
 
 def init_widgets_list():
     widgets_list = [
-        # Groups
-        widget.Sep(linewidth=0, padding=6, foreground=colors[2], background=colors[0]),
+##### --------------------------------------------------------------------------
+### Display Groups #############################################################
+##### --------------------------------------------------------------------------
+        widget.Sep(
+            linewidth=0,
+            padding=6,
+            foreground=colors[2],
+            background=colors[0]
+        ),
         widget.GroupBox(
             font="Ubuntu Bold",
             fontsize=9,
@@ -230,7 +320,9 @@ def init_widgets_list():
             foreground=colors[2],
             background=colors[0],
         ),
-        # Display Active Window
+##### --------------------------------------------------------------------------
+### Display Active Window ######################################################
+##### --------------------------------------------------------------------------
         widget.Prompt(
             prompt=prompt,
             font="Ubuntu Mono",
@@ -238,9 +330,20 @@ def init_widgets_list():
             foreground=colors[3],
             background=colors[1],
         ),
-        widget.Sep(linewidth=0, padding=40, foreground=colors[2], background=colors[0]),
-        widget.WindowName(foreground=colors[6], background=colors[0], padding=0),
-        # Display System Temps
+        widget.Sep(
+            linewidth=0,
+            padding=40,
+            foreground=colors[2],
+            background=colors[0]
+        ),
+        widget.WindowName(
+            foreground=colors[6],
+            background=colors[0],
+            padding=0
+        ),
+##### --------------------------------------------------------------------------
+### Display System Temps #######################################################
+##### --------------------------------------------------------------------------
         widget.TextBox(
             text="",
             background=colors[0],
@@ -256,9 +359,14 @@ def init_widgets_list():
             fontsize=11,
         ),
         widget.ThermalSensor(
-            foreground=colors[2], background=colors[4], threshold=90, padding=5
+            foreground=colors[2],
+            background=colors[4],
+            threshold=90,
+            padding=5
         ),
-        # Display CPU Usage
+##### --------------------------------------------------------------------------
+### Display CPU Usage ##########################################################
+##### --------------------------------------------------------------------------
         widget.TextBox(
             text="",
             background=colors[4],
@@ -273,9 +381,15 @@ def init_widgets_list():
             threshold=90,
             padding=5,
         ),
-        # Display RAM Usage
+##### --------------------------------------------------------------------------
+### Display RAM Usage ##########################################################
+##### --------------------------------------------------------------------------
         widget.TextBox(
-            text="", background=colors[5], foreground=colors[4], padding=0, fontsize=37
+            text="",
+            background=colors[5],
+            foreground=colors[4],
+            padding=0,
+            fontsize=37
         ),
         widget.TextBox(
             text=" 🖬",
@@ -292,18 +406,37 @@ def init_widgets_list():
             },
             padding=5,
         ),
-        # Display Current Volume
+##### --------------------------------------------------------------------------
+### Display Current Volume #####################################################
+##### --------------------------------------------------------------------------
         widget.TextBox(
-            text="", background=colors[4], foreground=colors[5], padding=0, fontsize=37
+            text="",
+            background=colors[4],
+            foreground=colors[5],
+            padding=0,
+            fontsize=37
         ),
         widget.TextBox(
-            text=" Vol:", foreground=colors[2], background=colors[5], padding=0
+            text=" Vol:",
+            foreground=colors[2],
+            background=colors[5],
+            padding=0
         ),
-        widget.Volume(foreground=colors[2], background=colors[5], padding=5),
+        widget.Volume(
+            foreground=colors[2],
+            background=colors[5],
+            padding=5
+        ),
+##### --------------------------------------------------------------------------
+### Display Current Layout #####################################################
+##### --------------------------------------------------------------------------
         widget.TextBox(
-            text="", background=colors[5], foreground=colors[4], padding=0, fontsize=37
+            text="",
+            background=colors[5],
+            foreground=colors[4],
+            padding=0,
+            fontsize=37
         ),
-        # Display Current Layout
         widget.CurrentLayoutIcon(
             custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
             foreground=colors[0],
@@ -311,10 +444,20 @@ def init_widgets_list():
             padding=0,
             scale=0.7,
         ),
-        widget.CurrentLayout(foreground=colors[2], background=colors[4], padding=10),
-        # Display  Current Date/Time
+        widget.CurrentLayout(
+            foreground=colors[2],
+            background=colors[4],
+            padding=10
+        ),
+##### --------------------------------------------------------------------------
+### Display Current Date/Time ##################################################
+##### --------------------------------------------------------------------------
         widget.TextBox(
-            text="", background=colors[4], foreground=colors[5], padding=0, fontsize=37
+            text="",
+            background=colors[4],
+            foreground=colors[5],
+            padding=0,
+            fontsize=37
         ),
         widget.Clock(
             foreground=colors[2],
@@ -322,14 +465,24 @@ def init_widgets_list():
             format="%A, %B %d  [ %I:%M ]",
             padding=5,
         ),
-        widget.Sep(linewidth=0, padding=5, foreground=colors[0], background=colors[5]),
-        widget.Systray(background=colors[0], padding=0),
+        widget.Sep(
+            linewidth=0,
+            padding=5,
+            foreground=colors[0],
+            background=colors[5]
+        ),
+        widget.Systray(
+            background=colors[0],
+            padding=0
+        ),
     ]
     return widgets_list
 
 
 ################################################################################
-### Widgets
+################################################################################
+### Misc -----------------------------------------------------------------------
+################################################################################
 ################################################################################
 
 
