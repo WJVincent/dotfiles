@@ -10,7 +10,7 @@
       user-mail-address "compelledtograce@gmail.com")
 
 (setq doom-font
-      (font-spec :family "JetBrainsMono Nerd Font" :size 15)
+      (font-spec :family "JetBrainsMono Nerd Font" :size 16)
       )
 
 (setq doom-theme 'doom-dracula)
@@ -29,6 +29,32 @@
 (add-to-list 'default-frame-alist '(alpha . (95 . 85)))
 (setq org-directory "~/org/")
 (setq display-line-numbers-type 'relative)
+
+(after! org
+  (require 'org-bullets)  ; Nicer bullets in org-mode
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  (setq org-directory "~/org/"
+        org-agenda-files '("~/org/agenda.org")
+        org-default-notes-file (expand-file-name "notes.org" org-directory)
+        org-ellipsis " ▼ "
+        org-log-done 'time
+        org-journal-dir "~/org/journal/"
+        org-journal-date-format "%B %d, %Y (%A)"
+        org-journal-file-format "%Y-%m-%d.org"
+        org-hide-emphasis-markers t
+        org-link-abbrev-alist    ; This overwrites the default Doom org-link-abbrev-list
+          '(("google" . "http://www.google.com/search?q=")
+            ("arch-wiki" . "https://wiki.archlinux.org/index.php/")
+            ("ddg" . "https://duckduckgo.com/?q=")
+            ("wiki" . "https://en.wikipedia.org/wiki/"))
+        org-todo-keywords        ; This overwrites the default Doom org-todo-keywords
+          '((sequence
+             "TODO(t)"           ; A task that is ready to be tackled
+             "PROJ(p)"           ; A project that contains other tasks
+             "WAIT(w)"           ; Something is holding up this task
+             "|"                 ; The pipe necessary to separate "active" states and "inactive" states
+             "DONE(d)"           ; Task has been completed
+             "CANCELLED(c)" )))) ; Task has been cancelled
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
