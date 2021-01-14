@@ -11,7 +11,7 @@ source /home/wvincent/.config/nvim/plugins/plugins.vim
 "--------------------------------------Themes----------------------------------
 "------------------------------------------------------------------------------
 
-source /home/wvincent/.config/nvim/plugins/plugin-settings/nord-vim-settings.vim
+source /home/wvincent/.config/nvim/plugins/plugin-settings/dracula-vim-settings.vim
 
 
 "------------------------------------------------------------------------------
@@ -31,3 +31,5 @@ source /home/wvincent/.config/nvim/plugins/plugin-settings/lightline.vim
 "------------------------------------------------------------------------------
 "----------------------------------------Paths---------------------------------
 "------------------------------------------------------------------------------
+
+

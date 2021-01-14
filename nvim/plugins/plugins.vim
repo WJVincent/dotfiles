@@ -39,6 +39,9 @@ Plug 'vimwiki/vimwiki'
 " Better MD support
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
+" Formatter
+Plug 'sbdchd/neoformat'
+
 "------------------------------------------------------------------------------
 "---------------------------------Syntax Helpers-------------------------------
 "------------------------------------------------------------------------------
@@ -65,8 +68,8 @@ Plug 'frazrepo/vim-rainbow'
 " Emoji support
 Plug 'junegunn/vim-emoji'
 
-" nord theme
-Plug 'arcticicestudio/nord-vim'
+" Dracula theme
+Plug 'dracula/vim'
 
 " Minimal Status Bar
 Plug 'itchyny/lightline.vim'

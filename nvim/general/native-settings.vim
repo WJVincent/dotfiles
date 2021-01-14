@@ -44,7 +44,7 @@ set display+=lastline
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set autochdir                           " Your working directory will always be the same as your working directory
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
+autocmd BufWritePre *.js Neoformat
 if !&scrolloff
     set scrolloff=3
 endif
