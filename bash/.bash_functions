@@ -8,3 +8,11 @@ function cd {
         ls
     fi
 }
+
+function mytimer {
+    termdown -T $1 $1
+}
+
+function parse_git_branch {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}

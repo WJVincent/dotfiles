@@ -29,11 +29,6 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
 
-# -- safety nets --
-
-alias mv='mv -i'
-alias rm='rm -i'
-
 # -- system checks --
 
 alias meminfo='free -m -l -t'
@@ -45,37 +40,22 @@ alias speed='speedtest-cli --server 2406 --simple'
 # -- true laziness --
 
 alias c='clear'
-alias update='sudo apt update && sudo apt upgrade'
-alias install='sudo apt install'
-alias change-terminal='sudo update-alternatives --config x-terminal-emulator'
-alias pip="pip3"
+alias update='sudo pacman -Syyu'
+alias install='sudo pacman -S'
+alias remove='sudo pacman -R'
 alias www='python -m SimpleHTTPServer 8000'
 alias vim='nvim'
 
+# -- flatpak aliases --
 
+alias slack='flatpak run com.slack.Slack'
 # ------------------------------------------------------------------------------
-# ------------------------------ git shortcuts----------------------------------
-# ------------------------------------------------------------------------------
-
-alias commit='git commit -m'
-alias gc='git checkout'
-alias log='git log --oneline'
-alias status='git status'
-alias setremote='git remote set-url origin'
-
-
-# ------------------------------------------------------------------------------
-# ------------------------------ psql shortcuts---------------------------------
+# ---------------------------- git shortcuts -----------------------------------
 # ------------------------------------------------------------------------------
 
-alias psql='psql -h localhost'
-alias sc='npx sequelize-cli'
-alias sc-init='npx sequelize-cli init'
-
-alias sc-makedb='npx sequelize-cli db:create'
-alias sc-makemodel='npx sequelize-cli model:generate'
-
-alias sc-migrate='npx sequelize-cli db:migrate'
-
-alias sc-genseed='npx sequelize-cli seed:generate'
-alias sc-seed='npm sequelize-cli db:seed:all'
+alias gcmsg='git commit -m'
+alias gco='git checkout'
+alias gst='git status'
+alias gl='git pull'
+alias gp='git push'
+alias ga='git add'
